@@ -3,18 +3,24 @@ import css from './Pagination.module.css';
 
 interface PaginationProps {
   pageCount: number;
+  currentPage: number;
   onPageChange: (selected: number) => void;
 }
 
-function Pagination({ pageCount, onPageChange }: PaginationProps) {
+function Pagination({
+  pageCount,
+  currentPage,
+  onPageChange,
+}: PaginationProps) {
   return (
     <ReactPaginate
       breakLabel="..."
       nextLabel=">"
-      onPageChange={event => onPageChange(event.selected)}
+      previousLabel="<"
       pageRangeDisplayed={3}
       pageCount={pageCount}
-      previousLabel="<"
+      forcePage={currentPage - 1}
+      onPageChange={event => onPageChange(event.selected)}
       containerClassName={css.pagination}
       activeClassName={css.active}
       disabledClassName={css.disabled}
