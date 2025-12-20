@@ -66,35 +66,4 @@ function App() {
   );
 }
 
-export default App;    <div className={css.app}>
-      <header className={css.toolbar}>
-        <SearchBox value={search} onChange={handleSearchChange} />
-        {data && data.totalPages > 1 && (
-          <Pagination
-            pageCount={data.totalPages}
-            onPageChange={selected => setPage(selected + 1)}
-          />
-        )}
-
-        <button className={css.button} onClick={() => setIsModalOpen(true)}>
-          Create note +
-        </button>
-      </header>
-
-      {isLoading && <p>Loading...</p>}
-      {isError && <p>Error loading notes.</p>}
-
-      {data && data.notes.length > 0 && (
-        <NoteList notes={data.notes} onDelete={id => deleteMutation.mutate(id)} />
-      )}
-
-      {isModalOpen && (
-        <Modal onClose={() => setIsModalOpen(false)}>
-          <NoteForm onClose={() => setIsModalOpen(false)} />
-        </Modal>
-      )}
-    </div>
-  );
-}
-
 export default App;
